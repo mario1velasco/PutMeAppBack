@@ -11,10 +11,14 @@
     <artifactId>putmeapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>putmeapp</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Show nice messages to put you up</description>
 
     <properties>
         <java.version>11</java.version>
+        <org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
+        <org.projectlombok.version>1.18.12</org.projectlombok.version>
+        <org.apache.maven.plugins.version>3.6.0</org.apache.maven.plugins.version>
+
     </properties>
 
     <dependencies>
@@ -62,6 +66,12 @@
             <artifactId>validation-api</artifactId>
             <version>2.0.0.Final</version>
         </dependency>
+        <!-- https://mapstruct.org/documentation/installation/ -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -83,6 +93,35 @@
 
     <build>
         <plugins>
+            <!-- https://mapstruct.org/documentation/installation/ -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source> <!-- depending on your project -->
+                    <target>${java.version}</target> <!-- depending on your project -->
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+                        <!-- other annotation processors -->
+                        <!-- https://stackoverflow.com/questions/47676369/mapstruct-and-lombok-not-working-together -->
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${org.projectlombok.version}</version>
+                        </path>
+                        <!-- <compilerArgs>
+                            <arg>-Amapstruct.suppressGeneratorTimestamp=true</arg>
+                            <arg>-Amapstruct.defaultComponentModel=spring</arg>
+                        </compilerArgs> -->
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
