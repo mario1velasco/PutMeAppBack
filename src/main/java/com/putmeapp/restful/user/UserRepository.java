@@ -1,4 +1,4 @@
-package com.proyect.restful.user;
+package com.putmeapp.restful.user;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository("userRepository")
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findByEmail(String email);
+    Optional<User> findByEmail(String email);
 
     Optional<User> findById(Long id);
 
-    List<User> findByLastName(String lastName);
+    Optional<List<User>> findByLastName(String lastName);
 }

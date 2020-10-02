@@ -1,8 +1,10 @@
-package com.proyect.restful.user;
+package com.putmeapp.restful.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.*;
 import javax.validation.Valid;
 
@@ -11,15 +13,19 @@ import javax.validation.Valid;
 public class UserController {
     @Autowired
     private UserService userService;
+    private UserMapper userMapper;
 
     @GetMapping("/users")
-    public List<User> all() {
-        return userService.getAllUsers();
+    public ResponseEntity<List<UserDTO>> all() {
+        return ResponseEntity.ok(userMapper.userToUserDTOs(userService.getAllUsers()));
+
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<Optional<User>> one(@Valid @PathVariable(value = "id") final Long id) {
-        return ResponseEntity.ok(userService.findUserById(id));
+    public ResponseEntity<User> one(@Valid @PathVariable(value = "id") final Long id) throws ResponseStatusException {
+        User userOptional = userService.findUserById(id);
+        // userOptional.
+        return ResponseEntity.ok(userOptional);
     }
 
     @PostMapping("/users")

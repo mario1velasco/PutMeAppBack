@@ -1,4 +1,4 @@
-package com.proyect.config;
+package com.putmeapp.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

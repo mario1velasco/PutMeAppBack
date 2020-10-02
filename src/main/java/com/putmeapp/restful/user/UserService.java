@@ -1,7 +1,10 @@
-package com.proyect.restful.user;
+package com.putmeapp.restful.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -14,8 +17,9 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public Optional<User> findUserById(Long id) {
-        return userRepository.findById(id);
+    public User findUserById(Long id) throws ResponseStatusException {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 
     public List<User> getAllUsers() {
