@@ -10,11 +10,12 @@
     <groupId>com.proyect</groupId>
     <artifactId>putmeapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>putmeapp</name>
     <description>Show nice messages to put you up</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>1.8</java.version>
         <org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.12</org.projectlombok.version>
         <org.apache.maven.plugins.version>3.6.0</org.apache.maven.plugins.version>
