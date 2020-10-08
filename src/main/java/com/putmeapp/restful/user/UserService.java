@@ -6,20 +6,25 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service("userService")
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserMapper userMapper;
 
     public User findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 
-    public User findUserById(Long id) throws ResponseStatusException {
-        return userRepository.findById(id)
+    public User findUserById(Long id) {
+        User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        UserDTO userDTO = userMapper.userToUserDTO(user);
+        // UserDTO userDTO = this.map(user, UserDTO.class);
+        return user;
     }
 
     public List<User> getAllUsers() {

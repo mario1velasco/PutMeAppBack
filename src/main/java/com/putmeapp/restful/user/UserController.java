@@ -3,7 +3,6 @@ package com.putmeapp.restful.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 import javax.validation.Valid;
@@ -22,9 +21,8 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<User> one(@Valid @PathVariable(value = "id") final Long id) throws ResponseStatusException {
+    public ResponseEntity<User> one(@Valid @PathVariable(value = "id") final Long id) {
         User userOptional = userService.findUserById(id);
-        // userOptional.
         return ResponseEntity.ok(userOptional);
     }
 
