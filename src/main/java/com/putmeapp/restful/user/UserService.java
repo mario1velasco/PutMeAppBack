@@ -19,16 +19,14 @@ public class UserService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 
-    public User findUserById(Long id) {
+    public UserDTO findUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-        UserDTO userDTO = userMapper.userToUserDTO(user);
-        // UserDTO userDTO = this.map(user, UserDTO.class);
-        return user;
+        return userMapper.userToUserDTO(user);
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserDTO> getAllUsers() {
+        return userMapper.userToUserDTOs(userRepository.findAll());
     }
 
     public User saveUser(User user) {

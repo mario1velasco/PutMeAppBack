@@ -12,18 +12,16 @@ import javax.validation.Valid;
 public class UserController {
     @Autowired
     private UserService userService;
-    private UserMapper userMapper;
 
     @GetMapping("/users")
     public ResponseEntity<List<UserDTO>> all() {
-        return ResponseEntity.ok(userMapper.userToUserDTOs(userService.getAllUsers()));
+        return ResponseEntity.ok(userService.getAllUsers());
 
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<User> one(@Valid @PathVariable(value = "id") final Long id) {
-        User userOptional = userService.findUserById(id);
-        return ResponseEntity.ok(userOptional);
+    public ResponseEntity<UserDTO> one(@Valid @PathVariable(value = "id") final Long id) {
+        return ResponseEntity.ok(userService.findUserById(id));
     }
 
     @PostMapping("/users")
