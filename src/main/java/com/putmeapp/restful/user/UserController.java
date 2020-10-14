@@ -25,8 +25,8 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@Valid @RequestBody final User user) {
-        return ResponseEntity.ok(userService.saveUser(user));
+    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody final UserDTO userDTO) {
+        return ResponseEntity.ok(userService.createUser(userDTO));
     }
 
     @PutMapping("/users/{id}")

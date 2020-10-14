@@ -6,10 +6,6 @@ import org.mapstruct.Mapper;
 
 @Mapper
 public interface UserMapper {
-    // UserDTO userToUserDTO(User user);
-
-    // User userDTOToUser(UserDTO userDTO);
-
     UserDTO userToUserDTO(User user);
 
     List<UserDTO> userToUserDTOs(List<User> users);
