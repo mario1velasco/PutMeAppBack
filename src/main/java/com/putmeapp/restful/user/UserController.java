@@ -25,14 +25,15 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody final UserDTO userDTO) {
-        return ResponseEntity.ok(userService.createUser(userDTO));
+    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody final UserDTO userDTO) throws Exception {
+        throw new Exception("excepcion");
+        // return ResponseEntity.ok(userService.createUser(userDTO));
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<User> updateUser(@Valid @RequestBody final User user,
+    public ResponseEntity<UserDTO> updateUser(@Valid @RequestBody final UserDTO userDTO,
             @PathVariable(value = "id") final Long id) {
-        return ResponseEntity.ok(userService.updateUser(user, id));
+        return ResponseEntity.ok(userService.updateUser(userDTO, id));
     }
 
     @DeleteMapping("/users/{id}")

@@ -29,18 +29,34 @@ public class UserService {
         return userMapper.userToUserDTOs(userRepository.findAll());
     }
 
-    public User saveUser(User user) {
-        return userRepository.save(user);
+    public UserDTO createUser(UserDTO userDTO) {
+        User user = userMapper.userDTOToUser(userDTO);
+        User saveUser = userRepository.save(user);
+        return userMapper.userToUserDTO(saveUser);
+        // try {
+        // } catch (Exception e) {
+        // // TODO: handle exception
+        // throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "User not
+        // created");
+        // }
     }
 
-    public User updateUser(User user, Long id) {
+    public UserDTO updateUser(UserDTO userDTO, Long id) {
+        User user = userMapper.userDTOToUser(userDTO);
         User updateUser = userRepository.findById(id).orElse(null);
         if (updateUser != null) {
             updateUser.setFirstName(user.getFirstName());
             updateUser.setLastName(user.getLastName());
+            updateUser.setEmail(user.getEmail());
+            try {
+                final User userUpdate = userRepository.save(updateUser);
+                return userMapper.userToUserDTO(userUpdate);
+            } catch (Exception e) {
+                // TODO: handle exception
+                throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "User not update");
+            }
         }
-        final User myuser = userRepository.save(updateUser);
-        return myuser;
+        return null;
     }
 
     public Boolean deleteUser(Long id) {
