@@ -33,12 +33,6 @@ public class UserService {
         User user = userMapper.userDTOToUser(userDTO);
         User saveUser = userRepository.save(user);
         return userMapper.userToUserDTO(saveUser);
-        // try {
-        // } catch (Exception e) {
-        // // TODO: handle exception
-        // throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "User not
-        // created");
-        // }
     }
 
     public UserDTO updateUser(UserDTO userDTO, Long id) {

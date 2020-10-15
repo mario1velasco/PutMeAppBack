@@ -38,12 +38,12 @@ public class User implements Serializable {
     private String lastName;
 
     @Email(message = "* Please Enter Valid Email Address")
-    @NotEmpty(message = " * Please Provide Email Address")
+    @NotBlank(message = " * Please Provide Email Address")
     @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password_hash")
-    @NotEmpty(message = "* Please Enter Password")
+    @NotBlank(message = "* Please Enter Password")
     @Size(min = 10, max = 200, message = "Password must be between 10 and 200 characters")
     private String password;
 

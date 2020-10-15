@@ -3,7 +3,7 @@ package com.putmeapp.restful.user;
 import java.util.Date;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -15,10 +15,10 @@ public class UserDTO {
     private String lastName;
 
     @Email(message = "* Please Enter Valid Email Address")
-    @NotEmpty(message = " * Please Provide Email Address")
+    @NotBlank(message = " * Please Provide Email Address")
     private String email;
 
-    @NotEmpty(message = "* Please Enter Password")
+    @NotBlank(message = "* Please Enter Password")
     @Size(min = 10, max = 200, message = "Password must be between 10 and 200 characters")
     private String password;
     private Date createdAt;
