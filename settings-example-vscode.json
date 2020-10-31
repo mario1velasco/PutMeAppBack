@@ -1,0 +1,103 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "window.zoomLevel": 1,
+    "files.autoSave": "onFocusChange",
+    "editor.minimap.maxColumn": 60,
+    "editor.minimap.renderCharacters": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "diffEditor.ignoreTrimWhitespace": true,
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "java.requirements.JDK11Warning": false,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "java.semanticHighlighting.enabled": true,
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.formatOnSave": true,
+    "editor.detectIndentation": false,
+    "git.suggestSmartCommit": false,
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "java.home": "C:\\Program Files\\Java\\jdk-11.0.8",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-1.8",
+            "path": "C:\\Program Files\\Java\\jdk1.8.0_211",
+        },
+        {
+            "name": "JavaSE-11",
+            "path": "C:\\Program Files\\Java\\jdk-11.0.8",
+        },
+    ],
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"c:\\Users\\mario.velasco\\.vscode\\extensions\\gabrielbb.vscode-lombok-1.0.1\\server\\lombok.jar\"",
+    "java.refactor.renameFromFileExplorer": "autoApply",
+    "java.project.importHint": false,
+    "vscode-mysql.resultTheme": "Dark",
+    "files.associations": {
+        "*.sql": "sql"
+    },
+    "sql-formatter.uppercase": true,
+    "sql-formatter.linesBetweenQueries": 2,
+    "sql-formatter.dialect": "sql",
+    "[sql]": {
+        "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+    },
+    "java.project.importOnFirstTimeStartup": "automatic",
+    "extensions.ignoreRecommendations": false,
+    "oracledevtools.connectionConfiguration.configFilesFolder": "C:\\Users\\mario.velasco\\Oracle\\network\\admin",
+    "oracledevtools.bookmarkFileFolder": "C:\\Users\\mario.velasco\\Oracle\\oracle.oracledevtools",
+    "oracledevtools.connectionConfiguration.walletFileFolder": "C:\\Users\\mario.velasco\\Oracle\\network\\admin",
+    "oracledevtools.connections": [
+        {
+            "authenticationType": 2,
+            "dBAPrivilege": "None",
+            "userID": "PLAVIS_IGVREGDEM",
+            "password": "PN8OBd#_aN",
+            "passwordSaved": true,
+            "passwordEmptyByUser": false,
+            "dataSource": "DEV07GEN",
+            "connectionType": 1,
+            "name": "PLAVIS_IGVREGDEM.DEV07GEN",
+            "tnsAdmin": "C:\\OracleClient\\instantclient_19_3\\network\\admin"
+        },
+        {
+            "authenticationType": 2,
+            "dBAPrivilege": "None",
+            "userID": "IGVS_DEMANDANTES09",
+            "password": "calypso",
+            "passwordSaved": true,
+            "passwordEmptyByUser": false,
+            "dataSource": "IGVS_DEMANDANTES09",
+            "connectionType": 1,
+            "name": "IGVS_DEMANDANTES09",
+            "tnsAdmin": "C:\\OracleClient\\instantclient_19_3\\network\\admin"
+        }
+    ],
+    "maven.terminal.favorites": [
+        {
+            "alias": "full-install without tests",
+            "value": "clean install -DskipTests",
+            "command": "clean install -DskipTests"
+        },
+        {
+            "alias": "full-build without tests",
+            "value": "clean package -DskipTests",
+            "command": "clean package -DskipTests"
+        }
+    ],
+    "java.import.gradle.enabled": false
+}
