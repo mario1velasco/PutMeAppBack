@@ -1,4 +1,4 @@
-package com.proyect.putmeapp;
+package com.putmeapp.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
