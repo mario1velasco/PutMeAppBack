@@ -13,10 +13,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/hello")
+    public String helloString() {
+        String string = "Hello, World";
+        return string;
+    }
+
     @GetMapping("/users")
     public ResponseEntity<List<UserDTO>> all() {
         return ResponseEntity.ok(userService.getAllUsers());
-
     }
 
     @GetMapping("/users/{id}")
