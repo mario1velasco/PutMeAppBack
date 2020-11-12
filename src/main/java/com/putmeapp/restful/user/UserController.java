@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.*;
 import javax.validation.Valid;
 
@@ -31,7 +32,8 @@ public class UserController {
 
     @PostMapping("/users")
     public ResponseEntity<UserDTO> createUser(@Valid @RequestBody final UserDTO userDTO) {
-        return ResponseEntity.ok(userService.createUser(userDTO));
+        UserDTO newUserDTO = userService.createUser(userDTO);
+        return ResponseEntity.created(URI.create("")).body(newUserDTO);
     }
 
     @PutMapping("/users/{id}")

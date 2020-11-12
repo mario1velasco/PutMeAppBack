@@ -7,6 +7,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.putmeapp.restful.user.UserDTO;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
@@ -17,6 +20,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -46,5 +51,37 @@ public class TestingWebApplicationTests {
         JSONObject user1 = data.getJSONObject(1);
         String name = user1.getString("firstName");
         assertEquals("Pedro", name);
+    }
+
+    @Test
+    public void shouldCreateOneUser() throws Exception {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setEmail("prueba@1.com");
+        userDTO.setFirstName("prueba@1.com");
+        userDTO.setLastName("prueba@1.com");
+        userDTO.setPassword("prueba@1.com");
+        // this.mockMvc
+        // .perform(MockMvcRequestBuilders.post("/api/v1/users").content(asJsonString(userDTO))
+        // .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+        // .andDo(print()).andExpect(status().isCreated())
+        // .andExpect(MockMvcResultMatchers.jsonPath("$.email").exists());
+
+        MvcResult result = this.mockMvc
+                .perform(MockMvcRequestBuilders.post("/api/v1/users").content(asJsonString(userDTO))
+                        .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+                .andDo(print()).andReturn();
+
+        String content = result.getResponse().getContentAsString();
+        JSONObject data2 = new JSONObject(content);
+        String name = data2.getString("firstName");
+        assertEquals("prueba@1.com", name);
+    }
+
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
