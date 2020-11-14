@@ -1,4 +1,4 @@
-package com.putmeapp.test;
+package com.putmeapp.test.testcases.examples;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,4 +1,4 @@
-package com.putmeapp.test;
+package com.putmeapp.test.testcases.examples;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;

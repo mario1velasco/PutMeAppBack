@@ -1,4 +1,4 @@
-package com.putmeapp.test;
+package com.putmeapp.test.testcases.examples;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
