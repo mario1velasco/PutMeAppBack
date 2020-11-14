@@ -9,8 +9,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.putmeapp.restful.user.UserDTO;
+import com.putmeapp.test.seeds.UserSeeds;
+import com.putmeapp.test.utils.UtilsForTesting;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
@@ -29,6 +29,12 @@ public class TestingWebApplicationTests {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private UserSeeds userSeeds;
+
+    @Autowired
+    private UtilsForTesting testUtils;
 
     @Test
     public void contextLoads() {
@@ -42,39 +48,41 @@ public class TestingWebApplicationTests {
 
     @Test
     public void shouldGetAllUsers() throws Exception {
-        this.mockMvc.perform(get("/api/v1/users")).andDo(print()).andExpect(status().isOk())
+        String endPoint = "/api/v1/users";
+        userSeeds.createOneUser();
+
+        this.mockMvc.perform(get(endPoint)).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
 
-        MvcResult result = this.mockMvc.perform(get("/api/v1/users")).andDo(print()).andReturn();
-        String content = result.getResponse().getContentAsString();
-        JSONArray data = new JSONArray(content);
-        JSONObject user1 = data.getJSONObject(1);
+        JSONObject user1 = testUtils.getFirstJSONObjectFromJSONArray(endPoint);
         String name = user1.getString("firstName");
-        assertEquals("Pedro", name);
+        assertEquals("Mario", name);
     }
 
     @Test
     public void shouldCreateOneUser() throws Exception {
+        userSeeds.createOneUser();
+
         UserDTO userDTO = new UserDTO();
         userDTO.setEmail("prueba@1.com");
         userDTO.setFirstName("prueba@1.com");
         userDTO.setLastName("prueba@1.com");
         userDTO.setPassword("prueba@1.com");
-        // this.mockMvc
-        // .perform(MockMvcRequestBuilders.post("/api/v1/users").content(asJsonString(userDTO))
-        // .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
-        // .andDo(print()).andExpect(status().isCreated())
-        // .andExpect(MockMvcResultMatchers.jsonPath("$.email").exists());
-
-        MvcResult result = this.mockMvc
+        this.mockMvc
                 .perform(MockMvcRequestBuilders.post("/api/v1/users").content(asJsonString(userDTO))
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
-                .andDo(print()).andReturn();
+                .andDo(print()).andExpect(status().isCreated())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.email").exists());
 
-        String content = result.getResponse().getContentAsString();
-        JSONObject data2 = new JSONObject(content);
-        String name = data2.getString("firstName");
-        assertEquals("prueba@1.com", name);
+        // MvcResult result = this.mockMvc
+        // .perform(MockMvcRequestBuilders.post("/api/v1/users").content(asJsonString(userDTO))
+        // .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+        // .andDo(print()).andReturn();
+
+        // String content = result.getResponse().getContentAsString();
+        // JSONObject data2 = new JSONObject(content);
+        // String name = data2.getString("firstName");
+        // assertEquals("prueba@1.com", name);
     }
 
     public static String asJsonString(final Object obj) {
