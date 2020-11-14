@@ -1,22 +1,26 @@
-package com.putmeapp.test.testcases.examples;
+// TO WORK @AutoConfigureMockMvc on UtilsForTesting
+// TO WORK @AutoConfigureMockMvc on UtilsForTesting
+// TO WORK @AutoConfigureMockMvc on UtilsForTesting
 
-import static org.assertj.core.api.Assertions.assertThat;
+// package com.putmeapp.test.testcases.examples;
 
-import com.putmeapp.restful.user.UserController;
+// import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Test;
+// import com.putmeapp.restful.user.UserController;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
 
-@SpringBootTest
-public class UserControllerTest {
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-    @Autowired
-    private UserController controller;
+// @SpringBootTest
+// public class UserControllerTest {
 
-    @Test
-    public void contextLoads() throws Exception {
-        assertThat(controller).isNotNull();
-    }
-}
+// @Autowired
+// private UserController controller;
+
+// @Test
+// public void contextLoads() throws Exception {
+// assertThat(controller).isNotNull();
+// }
+// }

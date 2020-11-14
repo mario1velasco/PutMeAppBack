@@ -49,7 +49,7 @@ public class TestingWebApplicationTests {
     @Test
     public void shouldGetAllUsers() throws Exception {
         String endPoint = "/api/v1/users";
-        userSeeds.createOneUser();
+        // userSeeds.createOneUser();
 
         this.mockMvc.perform(get(endPoint)).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
