@@ -9,6 +9,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Component
 public class UtilsForTesting {
 
@@ -35,5 +37,13 @@ public class UtilsForTesting {
         String content = result.getResponse().getContentAsString();
         JSONObject data = new JSONObject(content);
         return data;
+    }
+
+    public String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
